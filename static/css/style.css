@@ -21,8 +21,29 @@ input[type="text"]:focus {
   color: #fff;
 }
 
+.status-pending{
+  color: #fff;
+  background-color: grey;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 5px;
+}
+
+.status-completed{
+  color: #fff;
+  background-color: green;
+  font-size: 12px;
+  font-weight: normal;
+  padding: 5px;
+}
+
 .delete {
   cursor: pointer;
+  color: red;
+}
+.complete {
+  cursor: pointer;
+  color: green;
 }
 
 .filtered {

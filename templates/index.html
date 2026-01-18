@@ -42,9 +42,16 @@
       <ul class="list-group todos mx-auto text-light delete">
         {% for todo in todo_list %}
         <li  class="list-group-item d-flex justify-content-between align-items-center">
-          <span>{{ todo['Task'] }}</span>
+          <span>{{ todo['Task'] }}
+            <span class="status-{{ todo['Status'].lower()  }}">{{ todo['Status'] }}</span>
+          </span>
+          <div class="pull-right">
+          {% if todo["Status"] == "Pending" %}
+          <a href="{{ url_for('complete', row_no=loop.index0) }}"><i class="fa fa-check-square complete"></i></a>
+          {% endif %}
             <a href="{{ url_for('remove', row_no=loop.index0) }}"><i class="far fa-trash-alt delete"></i></a>
-        </li>
+          </div>
+          </li>
         {% endfor %}
 
       </ul>

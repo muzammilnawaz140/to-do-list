@@ -44,10 +44,15 @@ def remove(row_no):
     if 0 <= row_no < len(db):
         db = db.drop(row_no).reset_index( drop = True )
         db.to_csv(file_path,index=False)
-
-
     return redirect('/')
-
+@app.route("/complete/<int:row_no>")
+def complete(row_no):
+    global file_path
+    db = database()
+    if 0 <= row_no < len(db):
+        db.at[row_no,'Status'] = "Completed"
+        db.to_csv(file_path, index = False)
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True)
