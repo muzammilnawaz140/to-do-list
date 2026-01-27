@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
       crossorigin="anonymous"
     ></script>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
       rel="stylesheet"
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
       crossorigin="anonymous"
@@ -20,8 +20,12 @@
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Libre+Franklin:wght@200&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <title>Muhammad Muzammil Nawaz - Todo List</title>
   </head>
 
   <body>
@@ -39,21 +43,35 @@
         </form>
       </header>
 
-      <ul class="list-group todos mx-auto text-light delete">
+      <ul class="list-group todos mx-auto text-light">
         {% for todo in todo_list %}
-        <li  class="list-group-item d-flex justify-content-between align-items-center">
-          <span>{{ todo['Task'] }}
-            <span class="status-{{ todo['Status'].lower()  }}">{{ todo['Status'] }}</span>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          <span
+            >{{ todo['Task'] }}
+            <span class="status-{{ todo['Status'].lower()  }}"
+              >{{ todo['Status'] }}</span
+            >
           </span>
           <div class="pull-right">
-          {% if todo["Status"] == "Pending" %}
-          <a href="{{ url_for('complete', row_no=loop.index0) }}"><i class="fa fa-check-square complete"></i></a>
-          {% endif %}
-            <a href="{{ url_for('remove', row_no=loop.index0) }}"><i class="far fa-trash-alt delete"></i></a>
+            {% if todo["Status"] == "Pending" %}
+            <a href="{{ url_for('complete', row_no=loop.index0) }}"
+              ><img
+                class="complete"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABwUlEQVR4nO2Zu0sDMRzH7z+qm6OOXlR8wDm5dXK0mygISn1cFpEqVcF2FXwMggVftZfFKgg66KCOrdZBG1uk209SekLt1ZpcSa6QL/zWu88nbxLD0NHR0Ql07AwawgRd2ASVMUEgo2yCyrZjpjHpG/QHT8wlWdC4uUzUT8tDEGrZMQe4BdiwUQ2O3XLMc/4eIKgUIIFPkR5o+BCtFKQU9vi3FsBaoKAFAiewexmHfPGpMwW204tg4RBEkqOQKz52loALb9Xqt0SgBbZO5+rgLRyCMdwFJ3c78gXev3Lw/HYr3PJWDf7galP+EGLwC3sTEI71wH0u2zZ4KkPAhXdBWknwwFMZAoc3yQagcKwXHvLXvuGpDIFi5RXix7MeEvU9IQJPZc2BVhKi8FTmKtRMYnyl2xN+P7vxr9UKy9wHmkmIwlMVG9lfErzwVNVO/FF5gcnEcIPAWmqaC56qPEowiUhi5Ad+9WiKG56qPgu5EuupGSF4qlqgHYW1gKEFQAsQnwJBulq0HUT5Bar38wERIOiMW4A9LqgGx25lUD+3QLUXCIqqhrcdc97wE/a4wO7nZc4Jm6ASGzbCLa+jo6NjyMo3JR5x6DT23pgAAAAASUVORK5CYII="
+                alt="checked-checkbox"
+            /></a>
+            {% endif %}
+            <a href="{{ url_for('remove', row_no=loop.index0) }}"
+              ><img
+                class="delete"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABd0lEQVR4nO2WsU6EQBCG5z1sjYX3AhasYqml5gpNeAOls1KSszC5J7DRxtIYX8prNfGaAwnwG1bRHMJyBJZdL/Mnf8UU/7ezMwsRi8ViFYKgCQShwVP6x+FhBAL+/iF8dwbfxUCe4Wz3oEeAQcND+tx96RMAJkwMUFKLIe1k0iUGEAzQTQwgGKCb1h4g87bRRw2ZAEjuAsRRiPT6tLYmvTpGHC6QPNzYBZDk4eP4yzUQRfiiTgVBQwJk3mgpmHS4QBqMf8MH48qazBuZB5ABL4/+BvzuRPnkf75NTuzogBoikmHbhIfJLVQJ0TI8TL8DEqJ86rk/opXCwzhAfufrABQrFjYAVA5sxWBbCZBWbpuaIW6AoKEBVKtStWJhA8B6PGS3F42rstyJ9D6wowNLEA17voBQhQf/Tiu0yg7vw6RLDCAYoJsgaK4dwKF3fQAOPQ/QgSedAFtw6FVj+Dfs0aY2AAmxQxtw6LHn6zTPT157eBaLRdbpE3eQb6N7yFfqAAAAAElFTkSuQmCC"
+                alt="delete-forever"
+            /></a>
           </div>
-          </li>
+        </li>
         {% endfor %}
-
       </ul>
 
       <form method="post" action="/savetodo" class="add text-center my-4">
@@ -64,7 +82,7 @@
           <input type="submit" class="btn btn-light" />
         </div>
       </form>
+      <p class="footer">Develop by Muzammil Nawaz for ITC Project</p>
     </div>
-
   </body>
 </html>

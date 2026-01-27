@@ -40,10 +40,12 @@ input[type="text"]:focus {
 .delete {
   cursor: pointer;
   color: red;
+  width: 34px;
 }
 .complete {
   cursor: pointer;
   color: green;
+  width: 34px;
 }
 
 .filtered {
@@ -57,4 +59,9 @@ input[type="text"]:focus {
   border-bottom-width: 1px;
   border-radius: 13px 13px;
   transition: 0.8s;
+}
+
+.footer{
+  color: #fff;
+  font-size: 16px;
 }
